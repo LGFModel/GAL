@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <script src="../js/echarts.common.min.js"></script>
+    <!-- 引入 ECharts 文件 -->
+    <script src="../js/echarts.common.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        body {
+            background: #F5F6F8;
+        }
+
+        .info{
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;;
+        }
+        
+        .user_img{
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            background-image: url("../img/letao.bmp");
+            background-size: cover;
+            margin-left: 50%;
+            transform:translate(-50% ,0px);
+            margin-bottom: 5px;;
+        }
+        
+        .info:nth-child(1){
+            color: #8A93A7;
+            background: #243443;
+        }
+        
+        .clearfix::after
+        {
+            clear:both;
+            content:"";
+            display:block;
+            height:0;
+            visibility:hidden;
+        }
+
+        .left{
+            padding: 0;
+        }
+
+
+        .left_nav{
+            margin-top: 10px;
+        }
+
+        .left ul:first-child li{
+        }
+
+        .left ul:first-child li a{
+            color: #A5B0C1;
+            padding-left: 10%;
+            line-height: 40px
+        }
+
+        .left ul:first-child li a.click{
+            color: #fff;
+            background: #243443;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .top_nav {
+            background: #fff;
+            height: 50px;
+            line-height: 50px;;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <!-- 左侧导航按钮-->
+        <div class="left col-xs-2 col-sm-2">
+
+            <div class="info clearfix">
+                <div class="user_img"></div>
+                <div>布头儿</div>
+            </div>
+
+            <div class="left_nav">
+                <ul>
+                    <li><a href="javascript:;">商品管理</a></li>
+                    <li><a href="javascript:;">权限管理</a></li>
+                    <li><a href="javascript:;">订单管理</a></li>
+                    <li><a href="javascript:;">会员管理</a></li>
+                    <li><a href="javascript:;" class="click">报表统计</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- 右侧显示统计页面 -->
+        <div class="statistics">
+            <!-- 顶部导航-->
+            <div class="top_nav col-md-offset-2">
+                <button class="btn col-md-offset-11 btn-default"> 退出</button>
+            </div>
+
+            <!-- 主显示区域 -->
+            <div id="main_show">
+                <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                <div id="statistics" style="width: 400px; height: 300px; margin-left: 300px;" >
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="../js/echarts.common.min.js"></script>
+<script src="../js/jquery-3.1.1.min.js"></script>
+    <script>
+        $(function(){
+            $(".left").css("background","#2F4050");
+            var heig = window.screen.height - 33;
+            $(".left").css("height",heig+"px");
+        })
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('statistics'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '9月份酒类产品销量'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量w']
+            },
+            xAxis: {
+                data: ["红酒","白酒","洋酒","养生","葡萄酒","啤酒"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量w',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+        console.log(option)
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
