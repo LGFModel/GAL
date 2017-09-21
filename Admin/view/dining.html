@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="./Public/Admin/js/bootstrap/css/bootstrap.min.css">
+
+		<style>
+			div{
+				margin-top: 2%;
+				text-align: center;
+			}
+		</style>
+    </head>
+    <body>
+        <script src="./Public/Admin/js/libs/jquery-1.12.4.min.js"></script>
+        <script src="./Public/Admin/js/bootstrap/js/bootstrap.min.js"></script>
+        <script src="./Public/Admin/js/libs/jquery-validate.min.js"></script>
+
+
+    	<div id="main">
+        <a href="?c=addFoods" class="btn btn-success">添加产品</a>
+			<div class="row col-md-offset-3 col-md-6 ">
+
+				<h2>订单信息</h2>
+
+				<table class="table table-striped table-bordered table table-hover table-condensed">
+					<tr>
+						<td> <b>商品名</b> </td>
+						<td> <b>价格</b> </td>
+						<td> <b>数量</b> </td>
+						<td> <b>总价</b> </td>
+					</tr>
+
+					<{foreach $arrs as $row}>
+					<tr>
+						<td><{$row.name}></td>
+						<td><{$row.price}></td>
+						<td>
+							<button class="jian">-</button>
+							<span>0</span>
+							<button class="add">+</button>
+						</td>
+						<td class="price" price="<{$row.price}>">0</td>
+					</tr>
+					<{/foreach}>
+
+					<tr>
+						<td colspan="4" class="counts"> <b>0</b> </td>
+					</tr>
+				</table>
+				<button class="btn btn-success col-md-12"> 提交 </button>
+			</div>
+    	</div>
+
+    	<script>
+    		$("button").on("click",function(even){
+
+
+				var num = Number($(this).parent().find("span").text())	// 获取数量
+				var price = ($(this).parent().parent().find(".price").attr("price"));	// 拿到价格(通过自定义属性)
+
+				/*********** 判断加减 ***********/
+    			if ($(this).attr("class") == "add") {
+    				num++;
+    				var content = price * num;
+
+    				$(this).parent().find("span").text(num);	// span 数量
+    				$(this).parent().parent().find(".price").text(content);	// 写入价格
+    			}else if ($(this).attr("class") == "jian"){
+    				if (num == 0) return; // num == 0  就不能在减了
+
+    				num--;
+    				var content = price * num;
+
+    				$(this).parent().find("span").text(num);	// span 数量
+    				$(this).parent().parent().find(".price").text(content);	// 写入价格
+    			}
+
+    			/******** 获取 所有的 价格 遍历相加 ********/
+    			var arrs = $(".price");
+    			var price = 0;
+    			for (var i = 0; i < arrs.length; i++) {
+					price = $(arrs[i]).text()-0 + price;
+    			};
+    			$(".counts").html("<b>"+price+"</b>");
+     		})
+    	</script>
+    </body>
+</html>

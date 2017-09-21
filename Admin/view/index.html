@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="./Public/Admin/js/bootstrap/css/bootstrap.min.css">
+
+        <style>
+            img{
+                background: red;
+            }
+            .main {
+                margin: 10% auto;
+                overflow: hidden;
+            }
+            h2{
+                text-align: center;
+            }
+
+            div{
+                padding: 2px 0;
+            }
+            a{
+                margin-right: 20px;
+                margin-top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="./Public/Admin/js/libs/jquery-1.12.4.min.js"></script>
+        <script src="./Public/Admin/js/bootstrap/js/bootstrap.min.js"></script>
+
+        <a href="?c=add&a=index"  class="btn btn-success col-xs-1 pull-right " >添加新品</a>
+        <a href="?c=index&a=index"></a>
+
+    <div class="row main container-fluid">
+
+        <div class="col-md-4 col-xs-12 col-sm-12 col-md-offset-4">
+            
+            <h2>全栈2期订餐管理后台</h2>
+            <{foreach $arrs as $row}>
+            <div class="row">
+                <a class="col-xs-12 btn-success btn-primary btn-lg" href="?c=dining&a=index&id=<{$row.id}>"><{$row.name}></a>
+            </div>
+            <{/foreach}>
+
+            
+        </div>
+    </div>
+
+    </body>
+</html>
